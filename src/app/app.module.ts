@@ -1,16 +1,25 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
+import {MatTreeModule, MatIconModule} from '@angular/material';
+import {AppComponent} from './app.component';
+import {SidebarTreeComponent} from './sidebar-tree/sidebar-tree.component';
 
 @NgModule({
+  exports: [
+    MatTreeModule
+  ],
   declarations: [
-    AppComponent
+    AppComponent,
+    SidebarTreeComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MatTreeModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
