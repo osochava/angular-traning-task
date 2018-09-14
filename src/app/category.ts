@@ -1,4 +1,5 @@
 export class Category {
-  name: string;
-  children: Category[];
+  displayName: string;
+  subcategories: Category[];
+  key: string;
 }

@@ -3,6 +3,8 @@ import {NgModule} from '@angular/core';
 
 import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
+import { HttpClientModule } from '@angular/common/http';
+
 import {MatAutocompleteModule,
   MatBadgeModule,
   MatBottomSheetModule,
@@ -92,6 +94,7 @@ export class DemoMaterialModule {}
     BrowserModule,
     DemoMaterialModule,
     MatNativeDateModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
