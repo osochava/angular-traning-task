@@ -42,6 +42,8 @@ import {MatAutocompleteModule,
   MatTreeModule} from '@angular/material';
 import {AppComponent} from './app.component';
 import {SidebarTreeComponent} from './sidebar-tree/sidebar-tree.component';
+import { ListOfProductsComponent } from './list-of-products/list-of-products.component';
+import { ListitemProductcardComponentComponent } from './listitem-productcard-component/listitem-productcard-component.component';
 
 @NgModule({
   exports: [
@@ -82,13 +84,16 @@ import {SidebarTreeComponent} from './sidebar-tree/sidebar-tree.component';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-  ]})
-export class DemoMaterialModule {}
+  ],
+  })
+class DemoMaterialModule {}
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarTreeComponent
+    SidebarTreeComponent,
+    ListOfProductsComponent,
+    ListitemProductcardComponentComponent
   ],
   imports: [
     BrowserModule,

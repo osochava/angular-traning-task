@@ -2,7 +2,7 @@ import {Component, Injectable} from '@angular/core';
 import {MatTreeNestedDataSource} from '@angular/material/tree';
 import {NestedTreeControl} from '@angular/cdk/tree';
 import {Category} from '../category';
-import {CATEGORIES, TREE_DATA} from '../mock-categories';
+// import {CATEGORIES, TREE_DATA} from '../mock-categories';
 import {BehaviorSubject, of} from 'rxjs';
 import {ApptusService} from '../apptus.service';
 
