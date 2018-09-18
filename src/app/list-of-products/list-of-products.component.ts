@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ApptusService} from '../apptus.service';
 import {Product} from '../product';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-list-of-products',
@@ -9,15 +10,10 @@ import {Product} from '../product';
 })
 export class ListOfProductsComponent implements OnInit {
   products: Product[];
-  apptusService: ApptusService;
-  constructor(service: ApptusService) {
-    this.apptusService = service;
-  }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.apptusService.getProducts('category-page').subscribe(data => {
-      this.products = data;
-    });
+    this.products = this.route.snapshot.data['products'];
   }
 
 }

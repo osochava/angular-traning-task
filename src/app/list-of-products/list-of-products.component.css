@@ -1,0 +1,11 @@
+.listWrapper {
+  max-width: 60%;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.listItem {
+  border: black 1px solid;
+  margin: 15px;
+  width: 220px;
+}

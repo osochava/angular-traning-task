@@ -4,4 +4,5 @@ export class Product {
   product_description: string;
   product_key: number;
   price_formatted: string;
+  image: string;
 }

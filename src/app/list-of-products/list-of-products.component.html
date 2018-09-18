@@ -1,9 +1,6 @@
 <h3>List of products</h3>
-<div *ngIf="products && products.length">
-  <h3>Some products</h3>
-  <ul *ngFor="let product of products" class="col-1-4">
-    <li>
-      <textarea>{{product.product_name}}</textarea>
-    </li>
-  </ul>
+<div *ngIf="products && products.length" class="listWrapper">
+  <div *ngFor="let product of products" class="listItem">
+      <app-listitem-productcard [product]="product"></app-listitem-productcard>
+  </div>
 </div>

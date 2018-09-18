@@ -3,9 +3,10 @@ import {NgModule} from '@angular/core';
 
 import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 
-import {MatAutocompleteModule,
+import {
+  MatAutocompleteModule,
   MatBadgeModule,
   MatBottomSheetModule,
   MatButtonModule,
@@ -18,7 +19,6 @@ import {MatAutocompleteModule,
   MatDividerModule,
   MatExpansionModule,
   MatGridListModule,
-  MatIconModule,
   MatInputModule,
   MatListModule,
   MatMenuModule,
@@ -39,11 +39,18 @@ import {MatAutocompleteModule,
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
-  MatTreeModule} from '@angular/material';
+} from '@angular/material';
+import {MatTreeModule} from '@angular/material/tree';
+import {MatIconModule} from '@angular/material/icon';
 import {AppComponent} from './app.component';
 import {SidebarTreeComponent} from './sidebar-tree/sidebar-tree.component';
-import { ListOfProductsComponent } from './list-of-products/list-of-products.component';
-import { ListitemProductcardComponentComponent } from './listitem-productcard-component/listitem-productcard-component.component';
+import {ListOfProductsComponent} from './list-of-products/list-of-products.component';
+import {ListitemProductcardComponent} from './listitem-productcard-component/listitem-productcard.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppResolver} from './app-resolver';
+import {NavigationTreeResolver} from './navigation-tree-resolver';
+import {ApptusService} from './apptus.service';
+import { MainWrapperComponent } from './main-wrapper/main-wrapper.component';
 
 @NgModule({
   exports: [
@@ -85,23 +92,32 @@ import { ListitemProductcardComponentComponent } from './listitem-productcard-co
     MatTooltipModule,
     MatTreeModule,
   ],
-  })
-class DemoMaterialModule {}
+})
+class DemoMaterialModule {
+}
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarTreeComponent,
     ListOfProductsComponent,
-    ListitemProductcardComponentComponent
+    ListitemProductcardComponent,
+    MainWrapperComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     DemoMaterialModule,
     MatNativeDateModule,
     HttpClientModule,
+    MatTreeModule,
+    MatIconModule
   ],
-  providers: [],
+  providers: [
+    ApptusService,
+    AppResolver,
+    NavigationTreeResolver
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
