@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ApptusService} from '../apptus.service';
 import {Product} from '../product';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {PageEvent} from '@angular/material';
 
 @Component({
   selector: 'app-list-of-products',
@@ -11,6 +12,8 @@ import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 export class ListOfProductsComponent implements OnInit, OnDestroy {
   products: Product[];
   navigationSubscription: any;
+  pageEvent: PageEvent;
+  categoryKey: string;
 
   constructor(private route: ActivatedRoute, private router: Router) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
@@ -23,6 +26,7 @@ export class ListOfProductsComponent implements OnInit, OnDestroy {
 
   initialiseInvites() {
     this.products = this.route.snapshot.data['products'];
+    this.categoryKey = this.route.snapshot.paramMap.get('key');
   }
 
   ngOnDestroy() {
@@ -36,6 +40,21 @@ export class ListOfProductsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.products = this.route.snapshot.data['products'];
+  }
+
+  pageNext(event: PageEvent) {
+    console.log('pageNext');
+    const pageNumber = event.pageIndex;
+    // event.pageSize: 24
+    // event.previousPageIndex: 1
+    // this.router.navigate(['category'], { queryParams: {key: 1907548051, page_number: pageNumber}, queryParamsHandling: 'merge'});
+    // this.router.navigate(['/category', {page_number: pageNumber}]);
+    // this.route.url.value[1]
+    // this.router.navigate(['page', {page_number: pageNumber}], {relativeTo: this.route});
+    // this.router.navigate(['.'], {relativeTo: this.route, queryParams: {page_number: pageNumber}, queryParamsHandling: 'merge'});
+    // this.router.navigate(['category'], {queryParams: {page_number: pageNumber, key: this.categoryKey}});
+    this.router.navigate(['category', {page_number: pageNumber, key: this.categoryKey}]);
+
   }
 
 }

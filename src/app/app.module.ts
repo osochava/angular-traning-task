@@ -18,17 +18,14 @@ import {
   MatDialogModule,
   MatDividerModule,
   MatExpansionModule,
-  MatGridListModule,
   MatInputModule,
   MatListModule,
   MatMenuModule,
   MatNativeDateModule,
-  MatPaginatorModule,
   MatProgressBarModule,
   MatProgressSpinnerModule,
   MatRadioModule,
   MatRippleModule,
-  MatSelectModule,
   MatSidenavModule,
   MatSliderModule,
   MatSlideToggleModule,
@@ -42,6 +39,10 @@ import {
 } from '@angular/material';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatIconModule} from '@angular/material/icon';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatSelectModule} from '@angular/material/select';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppComponent} from './app.component';
 import {SidebarTreeComponent} from './sidebar-tree/sidebar-tree.component';
 import {ListOfProductsComponent} from './list-of-products/list-of-products.component';
@@ -51,50 +52,8 @@ import {AppResolver} from './app-resolver';
 import {NavigationTreeResolver} from './navigation-tree-resolver';
 import {ApptusService} from './apptus.service';
 import { MainWrapperComponent } from './main-wrapper/main-wrapper.component';
+import { SortSelectorComponent } from './sort-selector/sort-selector.component';
 
-@NgModule({
-  exports: [
-    CdkTableModule,
-    CdkTreeModule,
-    MatAutocompleteModule,
-    MatBadgeModule,
-    MatBottomSheetModule,
-    MatButtonModule,
-    MatButtonToggleModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatChipsModule,
-    MatStepperModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatDividerModule,
-    MatExpansionModule,
-    MatGridListModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatMenuModule,
-    MatNativeDateModule,
-    MatPaginatorModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule,
-    MatRadioModule,
-    MatRippleModule,
-    MatSelectModule,
-    MatSidenavModule,
-    MatSliderModule,
-    MatSlideToggleModule,
-    MatSnackBarModule,
-    MatSortModule,
-    MatTableModule,
-    MatTabsModule,
-    MatToolbarModule,
-    MatTooltipModule,
-    MatTreeModule,
-  ],
-})
-class DemoMaterialModule {
-}
 
 @NgModule({
   declarations: [
@@ -102,17 +61,23 @@ class DemoMaterialModule {
     SidebarTreeComponent,
     ListOfProductsComponent,
     ListitemProductcardComponent,
-    MainWrapperComponent
+    MainWrapperComponent,
+    SortSelectorComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
-    DemoMaterialModule,
     MatNativeDateModule,
     HttpClientModule,
     MatTreeModule,
-    MatIconModule
-  ],
+    MatIconModule,
+    MatPaginatorModule,
+    MatGridListModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    BrowserAnimationsModule,
+],
   providers: [
     ApptusService,
     AppResolver,

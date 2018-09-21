@@ -1,6 +1,11 @@
 <h3>List of products</h3>
+<app-sort-selector></app-sort-selector>
 <div *ngIf="products && products.length" class="listWrapper">
   <div *ngFor="let product of products" class="listItem">
       <app-listitem-productcard [product]="product"></app-listitem-productcard>
   </div>
 </div>
+<mat-paginator [length]="100"
+               [pageSize]="24"
+               (page)="pageEvent = pageNext($event)">
+</mat-paginator>
