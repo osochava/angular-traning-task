@@ -13,9 +13,18 @@ export class AppResolver implements Resolve<any>  {
   constructor(private apptusService: ApptusService) {}
 
   resolve(route: ActivatedRouteSnapshot) {
-    return this.apptusService.getCategoryPage(route.paramMap.get('key')).pipe(map(
-      data =>  data['productListing'][0].products.map(productData => this.convertDataToProductList(productData))
-    ),
+    const key = route.paramMap.get('key');
+    const page_number = route.paramMap.get('page_number');
+    return this.apptusService.getCategoryPage(key, 'relevance desc', page_number ? +page_number : 1).pipe(map(
+      data => {
+        const count: number = data.count[0].count;
+        const products = data['productListing'][0].products;
+        return {
+          products: products.map(productData => this.convertDataToProductList(productData)),
+          count: count
+        };
+      }
+      ),
       catchError(this.handleError<Product>('data not available at this time'))
     );
   }

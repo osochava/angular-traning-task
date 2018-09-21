@@ -14,6 +14,7 @@ export class ListOfProductsComponent implements OnInit, OnDestroy {
   navigationSubscription: any;
   pageEvent: PageEvent;
   categoryKey: string;
+  count: number;
 
   constructor(private route: ActivatedRoute, private router: Router) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
@@ -25,7 +26,8 @@ export class ListOfProductsComponent implements OnInit, OnDestroy {
   }
 
   initialiseInvites() {
-    this.products = this.route.snapshot.data['products'];
+    this.count = this.route.snapshot.data['products'].count;
+    this.products = this.route.snapshot.data['products'].products;
     this.categoryKey = this.route.snapshot.paramMap.get('key');
   }
 
@@ -39,12 +41,12 @@ export class ListOfProductsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.products = this.route.snapshot.data['products'];
+    this.products = this.route.snapshot.data['products'].products;
   }
 
   pageNext(event: PageEvent) {
     console.log('pageNext');
-    const pageNumber = event.pageIndex;
+    const pageNumber = event.pageIndex + 1;
     // event.pageSize: 24
     // event.previousPageIndex: 1
     // this.router.navigate(['category'], { queryParams: {key: 1907548051, page_number: pageNumber}, queryParamsHandling: 'merge'});

@@ -5,7 +5,7 @@
       <app-listitem-productcard [product]="product"></app-listitem-productcard>
   </div>
 </div>
-<mat-paginator [length]="100"
+<mat-paginator [length]="count"
                [pageSize]="24"
                (page)="pageEvent = pageNext($event)">
 </mat-paginator>
