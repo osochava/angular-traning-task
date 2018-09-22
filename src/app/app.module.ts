@@ -42,6 +42,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppComponent} from './app.component';
 import {SidebarTreeComponent} from './sidebar-tree/sidebar-tree.component';
@@ -74,9 +76,12 @@ import { SortSelectorComponent } from './sort-selector/sort-selector.component';
     MatPaginatorModule,
     MatGridListModule,
     MatSelectModule,
+    MatFormFieldModule,
     MatButtonModule,
     MatButtonToggleModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule
 ],
   providers: [
     ApptusService,

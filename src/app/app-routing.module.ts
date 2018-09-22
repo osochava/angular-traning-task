@@ -4,7 +4,6 @@ import {AppResolver} from './app-resolver';
 import {NavigationTreeResolver} from './navigation-tree-resolver';
 import {MainWrapperComponent} from './main-wrapper/main-wrapper.component';
 import {SortSelectorComponent} from './sort-selector/sort-selector.component';
-import {ProductResolver} from './product-resolver';
 
 const routes: Routes = [
   { path: '',  redirectTo: '/category;key=1907548051', pathMatch: 'full', runGuardsAndResolvers: 'paramsOrQueryParamsChange' },

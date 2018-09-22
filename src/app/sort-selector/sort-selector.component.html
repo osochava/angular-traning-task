@@ -1,5 +1,8 @@
-<mat-select placeholder="Sort by">
-  <mat-option *ngFor="let sort of sorts" [value]="sort.value">
-    {{sort.label}}
-  </mat-option>
-</mat-select>
+<mat-form-field>
+  <label>Sort by</label>
+  <mat-select>
+    <mat-option *ngFor="let sort of sorts" [value]="sort.value">
+      {{sort.label}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
