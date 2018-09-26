@@ -54,7 +54,6 @@ import {AppResolver} from './app-resolver';
 import {NavigationTreeResolver} from './navigation-tree-resolver';
 import {ApptusService} from './apptus.service';
 import { MainWrapperComponent } from './main-wrapper/main-wrapper.component';
-import { SortSelectorComponent } from './sort-selector/sort-selector.component';
 
 
 @NgModule({
@@ -63,8 +62,7 @@ import { SortSelectorComponent } from './sort-selector/sort-selector.component';
     SidebarTreeComponent,
     ListOfProductsComponent,
     ListitemProductcardComponent,
-    MainWrapperComponent,
-    SortSelectorComponent
+    MainWrapperComponent
   ],
   imports: [
     AppRoutingModule,

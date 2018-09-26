@@ -15,14 +15,17 @@ export class AppResolver implements Resolve<any>  {
   resolve(route: ActivatedRouteSnapshot) {
     const key = route.queryParamMap.get('key');
     const page_number = route.queryParamMap.get('page_number');
-    return this.apptusService.getCategoryPage(key, 'relevance desc', page_number ? +page_number : 0).pipe(map(
+    const pageNumber = page_number ? +page_number : 0;
+    let sortProducts = route.queryParamMap.get('sort_products');
+    sortProducts = sortProducts ? sortProducts : 'relevance desc';
+    return this.apptusService.getCategoryPage(key, sortProducts, pageNumber).pipe(map(
       data => {
         const count: number = data.count[0].count;
         const products = data['productListing'][0].products;
         return {
           products: products.map(productData => this.convertDataToProductList(productData)),
           count: count,
-          page_number: page_number
+          page_number: pageNumber
         };
       }
       ),
@@ -31,7 +34,7 @@ export class AppResolver implements Resolve<any>  {
   }
 
   convertDataToProductList(data) {
-    const image_local = data.variants ? data.variants[0].attributes.image_local : data.attributes.image_local;
+    const image_local = (data.variants && data.variants.length) ? data.variants[0].attributes.image_local : data.attributes.image_local;
     const image = image_local ? IMAGEPREFIX + '/images/' + image_local : '';
     return  {
       key: data.key,
