@@ -11,7 +11,7 @@ export interface Sort {
   styleUrls: ['./sort-selector.component.css']
 })
 export class SortSelectorComponent implements OnInit {
-  selected: Sort;
+  selected: string;
   sorts: Sort[] = [
     {
       value: 'relevance desc',
@@ -31,11 +31,7 @@ export class SortSelectorComponent implements OnInit {
     }
   ];
 
-  constructor() {
-  }
-
   ngOnInit() {
-    this.selected = this.sorts[2];
+    this.selected = this.sorts[0].value;
   }
-
 }

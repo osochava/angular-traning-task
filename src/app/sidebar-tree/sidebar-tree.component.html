@@ -7,7 +7,7 @@
             remove
           </mat-icon>
         </button>
-        <a class="mat-button" routerLink="/category/{{node.key}}">
+        <a class="mat-button" [routerLink]="['/category']" [queryParams]="{key: node.key}">
           <span>
             {{node.displayName}}
           </span>
@@ -25,7 +25,7 @@
             {{nestedTreeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
           </mat-icon>
         </button>
-        <a class="mat-button" routerLink="/category/{{node.key}}">
+        <a class="mat-button" [routerLink]="['/category']" [queryParams]="{key: node.key}">
           <span>
             {{node.displayName}}
           </span>

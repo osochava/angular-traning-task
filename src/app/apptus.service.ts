@@ -42,9 +42,10 @@ export class ApptusService {
   }
 
   public getCategoryPage(category_key: string, sort_products = 'relevance desc', page_number = 1, page_size = 24): Observable<any> {
+    const _page_number = page_number + 1;
     const url = 'category-page';
-    const firstProduct = (page_number - 1) * page_size + 1;
-    const lastProduct = page_number * page_size;
+    const firstProduct = (_page_number - 1) * page_size + 1;
+    const lastProduct = _page_number * page_size;
     const params = new HttpParams()
       .set('sessionKey', 'anonymous0')
       .set('customerKey', 'anonymous0')

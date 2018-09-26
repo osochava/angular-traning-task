@@ -13,15 +13,16 @@ export class AppResolver implements Resolve<any>  {
   constructor(private apptusService: ApptusService) {}
 
   resolve(route: ActivatedRouteSnapshot) {
-    const key = route.paramMap.get('key');
-    const page_number = route.paramMap.get('page_number');
-    return this.apptusService.getCategoryPage(key, 'relevance desc', page_number ? +page_number : 1).pipe(map(
+    const key = route.queryParamMap.get('key');
+    const page_number = route.queryParamMap.get('page_number');
+    return this.apptusService.getCategoryPage(key, 'relevance desc', page_number ? +page_number : 0).pipe(map(
       data => {
         const count: number = data.count[0].count;
         const products = data['productListing'][0].products;
         return {
           products: products.map(productData => this.convertDataToProductList(productData)),
-          count: count
+          count: count,
+          page_number: page_number
         };
       }
       ),

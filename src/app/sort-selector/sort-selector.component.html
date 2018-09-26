@@ -1,8 +1,8 @@
-<mat-form-field>
-  <label>Sort by</label>
-  <mat-select>
+<mat-form-field class="mat-form-field-flex">
+  <mat-select placeholder="Sort by:" [(value)]="selected">
     <mat-option *ngFor="let sort of sorts" [value]="sort.value">
       {{sort.label}}
     </mat-option>
   </mat-select>
 </mat-form-field>
+
