@@ -1,0 +1,16 @@
+.categories-tree-invisible {
+  display: none;
+}
+
+.categories-tree ul,
+.categories-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0.5rem;
+  list-style-type: none;
+}
+
+.mat-button {
+  text-align: left;
+}
+

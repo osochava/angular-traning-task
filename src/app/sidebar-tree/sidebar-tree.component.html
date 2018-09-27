@@ -1,0 +1,39 @@
+<mat-tree [dataSource]="nestedDataSource" [treeControl]="nestedTreeControl" class="categories-tree">
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+    <li class="mat-tree-node">
+      <div>
+        <button mat-icon-button >
+          <mat-icon>
+            remove
+          </mat-icon>
+        </button>
+        <a class="mat-button" [routerLink]="['/category']" [queryParams]="{key: node.key}">
+          <span>
+            {{node.displayName}}
+          </span>
+        </a>
+      </div>
+    </li>
+  </mat-tree-node>
+
+
+  <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+    <li>
+      <div class="mat-tree-node">
+        <button mat-icon-button matTreeNodeToggle>
+          <mat-icon class="mat-icon-rtl-mirror">
+            {{nestedTreeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+          </mat-icon>
+        </button>
+        <a class="mat-button" [routerLink]="['/category']" [queryParams]="{key: node.key}">
+          <span>
+            {{node.displayName}}
+          </span>
+        </a>
+      </div>
+      <ul [class.categories-tree-invisible]="!nestedTreeControl.isExpanded(node)">
+        <ng-container matTreeNodeOutlet></ng-container>
+      </ul>
+    </li>
+  </mat-nested-tree-node>
+</mat-tree>

@@ -1,0 +1,17 @@
+<h3>List of products: {{currentCategory}}</h3>
+<mat-form-field class="mat-form-field-flex">
+  <mat-select placeholder="Sort by:" [(value)]="selected" (selectionChange)="onSortChanges($event.value)">
+    <mat-option *ngFor="let sort of sorts" [value]="sort.value">
+      {{sort.label}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<div *ngIf="products && products.length" class="listWrapper">
+  <div *ngFor="let product of products" class="listItem">
+      <app-listitem-productcard [product]="product" (click)="productInModal(product)"></app-listitem-productcard>
+  </div>
+</div>
+<mat-paginator [length]="count"
+               [pageSize]="24"
+               (page)="pageEvent = pageNext($event)">
+</mat-paginator>
