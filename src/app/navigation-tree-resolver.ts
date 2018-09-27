@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Resolve, ActivatedRouteSnapshot} from '@angular/router';
 import {ApptusService} from './apptus.service';
-import {Observable, of} from 'rxjs';
-import {catchError, map} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 
 
 @Injectable()

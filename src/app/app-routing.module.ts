@@ -5,13 +5,14 @@ import {NavigationTreeResolver} from './navigation-tree-resolver';
 import {MainWrapperComponent} from './main-wrapper/main-wrapper.component';
 
 const routes: Routes = [
-  { path: '',  redirectTo: '/category;key=1907548051', pathMatch: 'full', runGuardsAndResolvers: 'paramsOrQueryParamsChange' },
+  { path: '',  redirectTo: '/category?key=1907548051', pathMatch: 'full' },
   {
     path: 'category',
     component: MainWrapperComponent,
     resolve: {
       categories: NavigationTreeResolver,
-      products: AppResolver
+      products: AppResolver,
+      selectedCategory: AppResolver
     },
     runGuardsAndResolvers: 'paramsOrQueryParamsChange',
     children: [
@@ -20,33 +21,13 @@ const routes: Routes = [
         component: MainWrapperComponent,
         resolve: {
           categories: NavigationTreeResolver,
-          products: AppResolver
+          products: AppResolver,
+          selectedCategory: AppResolver
         },
         runGuardsAndResolvers: 'paramsOrQueryParamsChange'
       }
     ]
-  },
-
-  // {
-  //   path: 'category/:key',
-  //   component: MainWrapperComponent,
-  //   resolve: {
-  //     categories: NavigationTreeResolver,
-  //     products: AppResolver
-  //   },
-  //   runGuardsAndResolvers: 'paramsOrQueryParamsChange',
-  //   children: [
-  //     {
-  //       path: 'page',
-  //       component: MainWrapperComponent,
-  //       resolve: {
-  //         categories: NavigationTreeResolver,
-  //         products: AppResolver
-  //       },
-  //       runGuardsAndResolvers: 'paramsOrQueryParamsChange'
-  //     }
-  //   ]
-  // },
+  }
 ];
 
 @NgModule({

@@ -3,6 +3,8 @@ import {Product} from '../product';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {PageEvent} from '@angular/material';
 import {MatPaginator} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
+import {ProductDetailsDialogComponent} from '../product-details-dialog/product-details-dialog.component';
 
 export interface Sort {
   value: string;
@@ -35,6 +37,7 @@ const sorts: Sort[] = [
 })
 
 export class ListOfProductsComponent implements OnInit, OnDestroy {
+  pageSize: number;
   selected: string;
   products: Product[];
   navigationSubscription: any;
@@ -42,9 +45,11 @@ export class ListOfProductsComponent implements OnInit, OnDestroy {
   pageIndex: number;
   count: number;
   sorts: Sort[] = sorts;
+  private dialogRef: any;
+  currentCategory: string;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, public dialog: MatDialog) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
       if (e instanceof NavigationEnd) {
@@ -56,6 +61,8 @@ export class ListOfProductsComponent implements OnInit, OnDestroy {
   initialiseInvites() {
     this.count = this.activatedRoute.snapshot.data['products'].count;
     this.products = this.activatedRoute.snapshot.data['products'].products;
+    this.currentCategory = this.activatedRoute.snapshot.data['products'].selectedCategory;
+    this.pageSize = this.products.length;
     this.paginator.pageIndex = this.pageIndex ? this.pageIndex : 0;
     this.selected = this.selected ? this.selected : sorts[0].value;
   }
@@ -75,19 +82,26 @@ export class ListOfProductsComponent implements OnInit, OnDestroy {
   }
 
   onSortChanges = (value: string) => {
-    console.log('onSortChanges');
-    const sort = value;
-    this.router.navigate([], {relativeTo: this.activatedRoute,
-      queryParams: {sort_products: sort, page_number: 0}, queryParamsHandling: 'merge'});
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: {sort_products: value, page_number: 0}, queryParamsHandling: 'merge'
+    });
   }
 
   pageNext(event: PageEvent) {
-    console.log('pageNext');
     const pageNumber = event.pageIndex;
-    // event.pageSize: 24
-    // event.previousPageIndex: 1
-    this.router.navigate([], {relativeTo: this.activatedRoute,
-      queryParams: {page_number: pageNumber}, queryParamsHandling: 'merge'});
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: {page_number: pageNumber}, queryParamsHandling: 'merge'
+    });
+  }
+
+  productInModal(product: any) {
+    this.dialogRef = this.dialog.open(ProductDetailsDialogComponent, {
+      width: '350px',
+      height: '600px',
+      data: product
+    });
   }
 
 }
